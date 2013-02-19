@@ -1,0 +1,3 @@
+[submodule "Vendor/threeMF"]
+	path = Vendor/threeMF
+	url = https://github.com/mgratzer/threeMF.git
