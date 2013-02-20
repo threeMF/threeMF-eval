@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Martin Gratzer. All rights reserved.
 //
 
-#import "TMFRequestResponseCommand.h"
-
 typedef enum MACCameraAction {
     MACCameraActionNone = 0,
     MACCameraActionToggleFlash,
@@ -15,11 +13,11 @@ typedef enum MACCameraAction {
     MACCameraActionTakePicture
 } MACCameraAction;
 
-@interface MACCameraActionCommand : TMFRequestResponseCommand
+// This command needs to transmit the requested aciton as parameter
+// It should be reqestable and return YES or NO (suceeed or not)
 
-@end
+#warning TODO: Add MACCameraActionCommand
+#warning TODO: Add MACCameraActionCommandArguments
 
-@interface MACCameraActionCommandArguments : TMFArguments
-@property (nonatomic) MACCameraAction action;
-- (id)initWithAction:(MACCameraAction) action;
-@end
+// remember to respect the naming convenction for arguments classes or link their classes to the command
+// like described in http://threemf.com/documentation/Classes/TMFCommand.html#//api/name/argumentsClass

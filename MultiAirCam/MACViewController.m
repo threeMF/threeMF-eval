@@ -31,6 +31,12 @@ static BOOL __ipad;
     return [[self class] new];
 }
 
+#warning TODO: init the connector property self.tmf within this controller MACCameraListViewController MACCameraViewController inherit from this VC
+
+- (void)dealloc {
+    _alertViewCompletionBlock = nil;
+}
+
 //............................................................................
 #pragma mark -
 #pragma mark Public

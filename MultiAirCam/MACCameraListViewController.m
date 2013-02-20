@@ -57,7 +57,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-#warning Start discovery for all commands
+#warning TODO: Start discovery for all needed commands
 }
 
 //............................................................................
@@ -138,19 +138,19 @@
 - (void)takePictureWithCell:(MACCameraCollectionViewCell *)cell {
     NSParameterAssert(cell != nil);
     NSParameterAssert(cell.camera != nil);
-#warning Send MACCameraActionTakePicture action
+#warning TODO: Send MACCameraActionTakePicture action
 }
 
 - (void)toggleFlashWithCell:(MACCameraCollectionViewCell *)cell {
     NSParameterAssert(cell != nil);
     NSParameterAssert(cell.camera != nil);
-#warning Send MACCameraActionToggleFlash action
+#warning TODO: Send MACCameraActionToggleFlash action
 }
 
 - (void)flipCameraWithCell:(MACCameraCollectionViewCell *)cell {
     NSParameterAssert(cell != nil);
     NSParameterAssert(cell.camera != nil);
-#warning Send MACCameraActionToggleCamera action
+#warning TODO: Send MACCameraActionToggleCamera action
 }
 
 //............................................................................
@@ -159,7 +159,7 @@
 //............................................................................
 - (void)subscribe:(TMFPeer *)camera {
     NSParameterAssert(camera!=nil);
-#warning subscribe to all commands of the given peer
+#warning TODO: Subscribe to all commands of the given peer
 }
 
 - (void)configureCell:(MACCameraCollectionViewCell *)cell atIndexpath:(NSIndexPath *)indexPath {

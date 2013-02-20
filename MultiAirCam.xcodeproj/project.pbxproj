@@ -78,6 +78,8 @@
 		02411C8C16D3F77400A13F9B /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 02411C5D16D3F77300A13F9B /* GCDAsyncSocket.m */; };
 		02411C8D16D3F77400A13F9B /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 02411C5F16D3F77300A13F9B /* GCDAsyncUdpSocket.m */; };
 		02411C9116D3F77400A13F9B /* ybase64.c in Sources */ = {isa = PBXBuildFile; fileRef = 02411C6416D3F77400A13F9B /* ybase64.c */; };
+		024EB9DE16D53BEE006E073D /* MACPreviewCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 024EB9DB16D53BEE006E073D /* MACPreviewCommand.m */; };
+		024EB9DF16D53BEE006E073D /* MACCameraActionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 024EB9DD16D53BEE006E073D /* MACCameraActionCommand.m */; };
 		0262000E168490230069685A /* UIImage+Scaling.m in Sources */ = {isa = PBXBuildFile; fileRef = 0262000D168490230069685A /* UIImage+Scaling.m */; };
 		0278FCF71674C327009B8D34 /* MACCameraCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0278FCF61674C327009B8D34 /* MACCameraCollectionViewCell.m */; };
 		02AE40B316B130C60057B472 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AE40B216B130C60057B472 /* ImageIO.framework */; };
@@ -214,6 +216,10 @@
 		02411C6416D3F77400A13F9B /* ybase64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ybase64.c; sourceTree = "<group>"; };
 		02411C6516D3F77400A13F9B /* ybase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ybase64.h; sourceTree = "<group>"; };
 		02411C6616D3F77400A13F9B /* ydefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ydefines.h; sourceTree = "<group>"; };
+		024EB9DA16D53BEE006E073D /* MACPreviewCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACPreviewCommand.h; sourceTree = "<group>"; };
+		024EB9DB16D53BEE006E073D /* MACPreviewCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACPreviewCommand.m; sourceTree = "<group>"; };
+		024EB9DC16D53BEE006E073D /* MACCameraActionCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACCameraActionCommand.h; sourceTree = "<group>"; };
+		024EB9DD16D53BEE006E073D /* MACCameraActionCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACCameraActionCommand.m; sourceTree = "<group>"; };
 		0262000C168490230069685A /* UIImage+Scaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scaling.h"; sourceTree = "<group>"; };
 		0262000D168490230069685A /* UIImage+Scaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scaling.m"; sourceTree = "<group>"; };
 		0278FCF51674C327009B8D34 /* MACCameraCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACCameraCollectionViewCell.h; sourceTree = "<group>"; };
@@ -343,6 +349,10 @@
 		022A67651674BCFF00FE3959 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				024EB9DA16D53BEE006E073D /* MACPreviewCommand.h */,
+				024EB9DB16D53BEE006E073D /* MACPreviewCommand.m */,
+				024EB9DC16D53BEE006E073D /* MACCameraActionCommand.h */,
+				024EB9DD16D53BEE006E073D /* MACCameraActionCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -662,6 +672,8 @@
 				02411C8C16D3F77400A13F9B /* GCDAsyncSocket.m in Sources */,
 				02411C8D16D3F77400A13F9B /* GCDAsyncUdpSocket.m in Sources */,
 				02411C9116D3F77400A13F9B /* ybase64.c in Sources */,
+				024EB9DE16D53BEE006E073D /* MACPreviewCommand.m in Sources */,
+				024EB9DF16D53BEE006E073D /* MACCameraActionCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

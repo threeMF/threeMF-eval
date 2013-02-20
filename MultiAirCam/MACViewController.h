@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "threeMF.h"
+#import "MACPreviewCommand.h"
+#import "MACCameraActionCommand.h"
 
 typedef void (^alertViewCompletionBlock_t)(NSUInteger buttonIndex);
 
-@interface MACViewController : UIViewController <TMFConnectorDelegate>
-#warning init the connector
-// Both controllers inherit from this class
+@interface MACViewController : UIViewController <TMFConnectorDelegate> // Both controllers inherit from this class
 @property (nonatomic, readonly) TMFConnector *tmf;
 + (id)controller;
 - (BOOL)iPad;

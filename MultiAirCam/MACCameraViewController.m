@@ -20,8 +20,7 @@ static NSDateFormatter *__timeFormatter;
     MACCamera *_camera;
     UIView *_preview;
 
-    #warning Add ivars for commands Previews and CameraActions
-
+    #warning TODO: Add ivars for commands Previews and CameraActions
     __weak NSTimer *_timer;
 
     NSLock *_waitingForImageResponseBlockLock;
@@ -64,18 +63,10 @@ static NSDateFormatter *__timeFormatter;
     _waitingForImageResponseBlockLock = [NSLock new];
     _waitingForImageResponseBlocks = [NSMutableArray new];
 
-#warning Create a command for camera previews.
+#warning TODO: Create a command for camera previews.
 // previews should be a publish subscribe command with the actual preview image as parameter (NSData)
 
-#warning Create a command for camera actions.
-// should be a request response command with the following actions
-//    typedef enum MACCameraAction {
-//        MACCameraActionNone = 0,
-//        MACCameraActionToggleFlash, // turns flash on and off
-//        MACCameraActionToggleCamera,
-//        MACCameraActionTakePicture
-//    } MACCameraAction;
-
+#warning TODO: Create a command for camera actions.
 // MACCameraActionToggleFlash should do
 //    [_camera toggleTorch];
 //    [_camera toggleFlash];
@@ -136,7 +127,7 @@ static NSDateFormatter *__timeFormatter;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-#warning Puhlish commands
+#warning TODO: Publish commands
     [self appendToConsole:@"Waiting for subscribers"];
 }
 
@@ -154,12 +145,37 @@ static NSDateFormatter *__timeFormatter;
 //............................................................................
 
 #pragma mark TMFConnectorDelegate
-#warning Report new subscribers 
-// do on + subscribers for previews: [self appendToConsole:[NSString stringWithFormat:@"Added %@", peer.hostName]];
-#warning Report leaving subscribers
-// do on - subscribers for previews: [self appendToConsole:[NSString stringWithFormat:@"Removed %@", peer.hostName]];
+- (void)connector:(TMFConnector *)tmf didAddSubscriber:(TMFPeer *)peer toCommand:(TMFPublishSubscribeCommand *)command {
+#warning TODO: Start the timer sending preview images with the first subscriber 
+    
+//    if([command isKindOfClass:[MACPreviewCommand class]]) {
+//        if(![MACCamera hasCamera]) {
+//            [self cameraPreviewImageCaptured:nil image:[self imageFromPreviewLayer]];
+//        }
+//        else {
+//            if(!_timer && command == _previewCommand && [command.subscribers count] > 0) {
+//                _timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:_camera selector:@selector(capturePreviewImage) userInfo:nil repeats:YES];
+//                [_timer fire];
+//            }
+//        }
+//
+//        [self appendToConsole:[NSString stringWithFormat:@"Added %@", peer.hostName]];
+//    }
+}
 
-#warning Display number of active substribers with _subscribers.text
+- (void)connector:(TMFConnector *)tmf didRemoveSubscriber:(TMFPeer *)peer fromCommand:(TMFPublishSubscribeCommand *)command {
+#warning TODO: Stop the timer sending preview images when the last subscriber is gone
+    
+//    if([command isKindOfClass:[MACPreviewCommand class]]) {
+//        if(_timer && command == _previewCommand && [command.subscribers count] == 0) {
+//            [_timer invalidate];
+//            _timer = nil;
+//        }
+//
+//        [self appendToConsole:[NSString stringWithFormat:@"Removed %@", peer.hostName]];
+//    }
+}
+
 
 #pragma mark MACCameraDelegate
 - (void)camera:(MACCamera *)camera didFailWithError:(NSError *)error {
@@ -184,8 +200,8 @@ static NSDateFormatter *__timeFormatter;
 }
 
 - (void)cameraPreviewImageCaptured:(MACCamera *)captureManager image:(UIImage *)image {
-#warning Send preview image
-// use small data: UIImageJPEGRepresentation(image, 0.6)
+#warning TODO: Send preview image to subscribers
+// use small data with UIImageJPEGRepresentation(image, 0.6)
 }
 
 //............................................................................
@@ -219,7 +235,6 @@ static NSDateFormatter *__timeFormatter;
     _subscribers.layer.cornerRadius = 8.0f;
     _subscribers.text = @"0";
     _console.contentInset = UIEdgeInsetsMake(2.0f, 2.0f, 2.0f, 2.0f);
-    //    _subscribers.hidden = YES;
     [self.view addSubview:_subscribers];
 }
 
