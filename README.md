@@ -29,7 +29,6 @@ For more information on 3MF please read [this blog post](http://www.mgratzer.com
 
 ## Implementation Instructions
 
-## Project structure
 The project is divided into two view controllers, first the `MACCameraListViewController` which is the controller running on iPads displaying all iPhones in range. The second controller is `MACCameraViewController` containing all code for the iPhone. Both controllers are a subclass of `MACViewController` adding some convenience code and most importantly defining the `TMFConnector` property. Beside the 3MF commands, these are the only classes to change.
 
 Two files for the planned commands already exist `MACPreviewCommand` and `MACCameraActionCommand` (but without any class definitions). 
