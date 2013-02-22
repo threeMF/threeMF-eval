@@ -1,6 +1,6 @@
 # threeMF Evaluation Project
 
-First please read [this blog post](http://www.mgratzer.com/introducing-threeMF/) to know what this repository is about and how you can take part in this little framework evaluation.
+First please read [this blog post](http://www.mgratzer.com/introducing-threeMF/) to know what this repository is about and how you can take part in this little framework evaluation. Afterwards please follow the implementation instructions below.
 
 ## Project
 This application is called **MultiAirCam** and uses [3MF](http://threemf.com) to share camera images between *n iPhones* and *m iPads*. These devices should find each other automatically via 3MF and iPads should subscribe to all iPhone cameras and display live preview data of what the camera is recording. Small images captured from the camera are transmitted to each subscribed iPad. *All the camera recording is ready to use, no effort in this direction has to be made!*
@@ -26,5 +26,46 @@ For more information on 3MF please read [this blog post](http://www.mgratzer.com
 5. And finally it would be very kind if you fill out this [survey](http://grzr.me/3mfeval) 
 
 **threeMF-eval is not an working application out of the box and prepared with placeholders for an implementation with 3MF.** *#warning* directives are used all over to indicate where additions have to be made.
+
+## Implementation Instructions
+
+## Project structure
+The project is divided into two view controllers, first the `MACCameraListViewController` which is the controller running on iPads displaying all iPhones in range. The second controller is `MACCameraViewController` containing all code for the iPhone. Both controllers are a subclass of `MACViewController` adding some convenience code and most importantly defining the `TMFConnector` property. Beside the 3MF commands, these are the only classes to change.
+
+Two files for the planned commands already exist `MACPreviewCommand` and `MACCameraActionCommand` (but without any class definitions). 
+
+### Step 1 - The Connector
+Start with the initialization of the `[MACViewController tmf]` property in `[MACViewController init]`.
+
+### Step 2 - Commands
+
+#### Camera Action Command
+This command should follow the [request response](https://github.com/mgratzer/threeMF/wiki/RequestResponse) pattern. Provide the command create a corresponding [arguments](https://github.com/mgratzer/threeMF/wiki/CustomCommands) class defining a `MACCameraAction` property and implementing the `- (id)initWithAction:(MACCameraAction)action` method.
+
+#### Camera Preview Command
+This command should follow the [publish subscribe](https://github.com/mgratzer/threeMF/wiki/PublishSubscribe) pattern. Provide the command and create a corresponding [arguments](https://github.com/mgratzer/threeMF/wiki/CustomCommands) class. This command sends small image frames to subscribers and therefore we can subclass `TMFImageCommand` and `TMFImageCommandArguments`.
+
+### Step 3 - iPhone Controller
+
+The `MACCameraViewController` is defined to run on iPhones which are the providers for our commands.
+
+1. Add an ivar for each command to `MACCameraViewController`
+2. Create both commands in `viewDidLoad` and provide the code below each warning in the `MACCameraActionCommand` receive block.
+3. Publish both commands in `viewDidAppear`
+4. Activate the code in `connector:didAddSubscriber:toCommand`
+5. Activate the code in `connector:didRemoveSubscriber:fromCommand`
+6. Create preview arguments and send them in `cameraPreviewImageCaptured:image:`
+
+### Step 4 - iPad Controller
+
+The `MACCameraListViewController` is defined to run on iPads which are subscribers for our commands. 
+
+1. Start discovery for providers with our two commands in `viewWillAppear:` and use `self` as delegate.
+2. Subscribe to the preview command and update the cameras preview image like in the given example (comment in code).
+3. Execute all camera action commands and save the resulting image of `MACCameraActionTakePicture` to the photos album with `UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:response[@"image"]], nil, nil, nil);`
+
+
+
+
 
 
