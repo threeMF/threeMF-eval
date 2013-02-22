@@ -20,7 +20,7 @@ static NSDateFormatter *__timeFormatter;
     MACCamera *_camera;
     UIView *_preview;
 
-    #warning TODO: Add ivars for commands Previews and CameraActions
+    #warning TODO Step 3: Add ivars for commands Previews and CameraActions
     __weak NSTimer *_timer;
 
     NSLock *_waitingForImageResponseBlockLock;
@@ -63,10 +63,10 @@ static NSDateFormatter *__timeFormatter;
     _waitingForImageResponseBlockLock = [NSLock new];
     _waitingForImageResponseBlocks = [NSMutableArray new];
 
-#warning TODO: Create a command for camera previews.
+#warning TODO Step 3: Create a command for camera previews.
 // previews should be a publish subscribe command with the actual preview image as parameter (NSData)
 
-#warning TODO: Create a command for camera actions.
+#warning TODO Step 3: Create a command for camera actions.
 // MACCameraActionToggleFlash should do
 //    [_camera toggleTorch];
 //    [_camera toggleFlash];
@@ -127,7 +127,7 @@ static NSDateFormatter *__timeFormatter;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-#warning TODO: Publish commands
+#warning TODO Step 3: Publish commands
     [self appendToConsole:@"Waiting for subscribers"];
 }
 
@@ -146,8 +146,7 @@ static NSDateFormatter *__timeFormatter;
 
 #pragma mark TMFConnectorDelegate
 - (void)connector:(TMFConnector *)tmf didAddSubscriber:(TMFPeer *)peer toCommand:(TMFPublishSubscribeCommand *)command {
-#warning TODO: Start the timer sending preview images with the first subscriber 
-    
+#warning TODO Step 3: Start the timer sending preview images with the first subscriber     
 //    if([command isKindOfClass:[MACPreviewCommand class]]) {
 //        if(![MACCamera hasCamera]) {
 //            [self cameraPreviewImageCaptured:nil image:[self imageFromPreviewLayer]];
@@ -159,23 +158,23 @@ static NSDateFormatter *__timeFormatter;
 //            }
 //        }
 //
+//        [self updateSubscriberCounter:command];
 //        [self appendToConsole:[NSString stringWithFormat:@"Added %@", peer.hostName]];
 //    }
 }
 
 - (void)connector:(TMFConnector *)tmf didRemoveSubscriber:(TMFPeer *)peer fromCommand:(TMFPublishSubscribeCommand *)command {
-#warning TODO: Stop the timer sending preview images when the last subscriber is gone
-    
+#warning TODO Step 3: Stop the timer sending preview images when the last subscriber is gone    
 //    if([command isKindOfClass:[MACPreviewCommand class]]) {
 //        if(_timer && command == _previewCommand && [command.subscribers count] == 0) {
 //            [_timer invalidate];
 //            _timer = nil;
 //        }
 //
+//        [self updateSubscriberCounter:command];
 //        [self appendToConsole:[NSString stringWithFormat:@"Removed %@", peer.hostName]];
 //    }
 }
-
 
 #pragma mark MACCameraDelegate
 - (void)camera:(MACCamera *)camera didFailWithError:(NSError *)error {
@@ -193,6 +192,8 @@ static NSDateFormatter *__timeFormatter;
     [_waitingForImageResponseBlockLock lock];
     NSArray *blocks = [_waitingForImageResponseBlocks copy];
     for(responseBlock_t block in blocks) {
+        #warning Make sure the response block for MACCameraActionTakePicture understands the dictionary @{ @"image" :  imageData }
+        // instead of the dictionary we could actually response with everything supported by TMFSerializableObject
         block(@{ @"image" :  imageData }, nil);
     }
     [_waitingForImageResponseBlocks removeObjectsInArray:blocks];
@@ -200,7 +201,7 @@ static NSDateFormatter *__timeFormatter;
 }
 
 - (void)cameraPreviewImageCaptured:(MACCamera *)captureManager image:(UIImage *)image {
-#warning TODO: Send preview image to subscribers
+#warning TODO Step 3: Send preview image to subscribers
 // use small data with UIImageJPEGRepresentation(image, 0.6)
 }
 
@@ -244,5 +245,10 @@ static NSDateFormatter *__timeFormatter;
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+- (void)updateSubscriberCounter:(TMFPublishSubscribeCommand *)command {
+    NSUInteger count = [command.subscribers count];
+    _subscribers.text = [NSString stringWithFormat:@"%@", @(count)];
 }
 @end

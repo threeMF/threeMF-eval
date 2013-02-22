@@ -35,7 +35,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     application.idleTimerDisabled = YES;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-#warning INFO: ipads can only list cameras and iphones can only act as cameras in this example.
     self.window.rootViewController = [MACViewController iPad] ? [MACCameraListViewController controller] : [MACCameraViewController controller];
     [self.window makeKeyAndVisible];
     return YES;

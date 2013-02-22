@@ -11,10 +11,10 @@
 // Override all properties to make it reliable according to https://github.com/mgratzer/threeMF/wiki/CustomCommands
 
 
-#warning TODO: Add MACPreviewCommand
-// you can directly inherit from TMFImageCommand
-#warning TODO: Add MACPreviewCommandArguments
-// you can directly inherit from TMFImageCommandArguments
+#warning TODO Step 2: Add MACPreviewCommand
+// you can inherit from TMFImageCommand
+#warning TODO Step 2: Add MACPreviewCommandArguments
+// you can inherit from TMFImageCommandArguments
 
 // remember to respect the naming convenction for arguments classes or link their classes to the command
 // like described in http://threemf.com/documentation/Classes/TMFCommand.html#//api/name/argumentsClass

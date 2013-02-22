@@ -57,7 +57,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-#warning TODO: Start discovery for all needed commands
+#warning TODO Step 4: Start discovery for all needed commands
+    // connector:didChangeDiscoveringPeer:forChangeType: will handle
+    // adding / removing / updating all found / changed cameras on the collection view.
 }
 
 //............................................................................
@@ -136,21 +138,15 @@
 
 #pragma mark MACCameraCollectionViewCellDelegate
 - (void)takePictureWithCell:(MACCameraCollectionViewCell *)cell {
-    NSParameterAssert(cell != nil);
-    NSParameterAssert(cell.camera != nil);
-#warning TODO: Send MACCameraActionTakePicture action
+    [self triggerCameraAction:MACCameraActionTakePicture cell:cell];
 }
 
 - (void)toggleFlashWithCell:(MACCameraCollectionViewCell *)cell {
-    NSParameterAssert(cell != nil);
-    NSParameterAssert(cell.camera != nil);
-#warning TODO: Send MACCameraActionToggleFlash action
+    [self triggerCameraAction:MACCameraActionToggleFlash cell:cell];
 }
 
 - (void)flipCameraWithCell:(MACCameraCollectionViewCell *)cell {
-    NSParameterAssert(cell != nil);
-    NSParameterAssert(cell.camera != nil);
-#warning TODO: Send MACCameraActionToggleCamera action
+    [self triggerCameraAction:MACCameraActionToggleCamera cell:cell];
 }
 
 //............................................................................
@@ -159,7 +155,23 @@
 //............................................................................
 - (void)subscribe:(TMFPeer *)camera {
     NSParameterAssert(camera!=nil);
-#warning TODO: Subscribe to all commands of the given peer
+#warning TODO Step 4: Subscribe to the preview command of the given peer
+// refresh the cameras cell in the preview commands receive block like this:
+//    NSIndexPath *indexPath = [self indexPathOfCamera:peer];
+//    if(indexPath) {
+//        MACCameraCollectionViewCell *cell = (MACCameraCollectionViewCell *)[_collectionView cellForItemAtIndexPath:indexPath];
+//        if(cell.imageView.image == nil) {
+//            [cell enable];
+//        }
+//        cell.imageView.image = [UIImage imageWithData:arguments.data];
+//    }
+}
+
+- (void)triggerCameraAction:(MACCameraAction)action cell:(MACCameraCollectionViewCell *)cell {
+    NSParameterAssert(cell != nil);
+    NSParameterAssert(cell.camera != nil);
+    // passing in the cell here allowes the usage of [cell enable] / [cell disable] while waiting results
+#warning TODO Step 4: Send the MACCameraAction action
 }
 
 - (void)configureCell:(MACCameraCollectionViewCell *)cell atIndexpath:(NSIndexPath *)indexPath {

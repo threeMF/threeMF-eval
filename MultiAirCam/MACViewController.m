@@ -31,7 +31,13 @@ static BOOL __ipad;
     return [[self class] new];
 }
 
-#warning TODO: init the connector property self.tmf within this controller MACCameraListViewController MACCameraViewController inherit from this VC
+- (id)init {
+    self = [super init];
+    if (self) {
+        #warning TODO Step 1: init the connector property self.tmf within this controller MACCameraListViewController MACCameraViewController inherit from this VC
+    }
+    return self;
+}
 
 - (void)dealloc {
     _alertViewCompletionBlock = nil;
