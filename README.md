@@ -19,7 +19,7 @@ For more information on 3MF please read [this blog post](http://www.mgratzer.com
 1. Fork this project
 2. Read about creating [Custom](https://github.com/mgratzer/threeMF/wiki/CustomCommands), [Publish Subscribe](https://github.com/mgratzer/threeMF/wiki/PublishSubscribe) and [Request Response](https://github.com/mgratzer/threeMF/wiki/RequestResponse) Commands
 3. Build the project and replace all warnings with the necessary 3MF code. 
-	- **While building the app please write a diary, take down your thoughts which can point out where improvements should be made (or record some audio, everything helps)**
+	- While building the app **please write a diary**, take down your thoughts which can point out where improvements should be made (or record some audio, everything helps). Simply create a text document and take down your thoughts after every step marked in the sample project and the time it took you to perform the step. You can copy your diary into the survey at the end of the evaluation.
 	- Take down the time it takes you to do the evaluation
 	- Use the [sample applications](https://github.com/mgratzer/threeMF/tree/master/Samples) for further insights
 4.  Push your code back to your Github fork
