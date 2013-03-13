@@ -2,6 +2,8 @@
 
 First please read [this blog post](http://www.mgratzer.com/introducing-threeMF/) to know what this repository is about and how you can take part in this little framework evaluation. Afterwards please follow the implementation instructions below.
 
+**PLEASE NOTICE:** The framework may report a **connection refused** error in some cases. Restarting the app on both devices will help until the problem is fixed.
+
 ## Project
 This application is called **MultiAirCam** and uses [3MF](http://threemf.com) to share camera images between *n iPhones* and *m iPads*. These devices should find each other automatically via 3MF and iPads should subscribe to all iPhone cameras and display live preview data of what the camera is recording. Small images captured from the camera are transmitted to each subscribed iPad. *All the camera recording is ready to use, no effort in this direction has to be made!*
 
